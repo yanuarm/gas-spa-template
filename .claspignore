@@ -1,0 +1,5 @@
+# Only push files inside dist/ (assuming rootDir is "dist" in .clasp.json)
+# If rootDir is project root, ignore everything except dist/
+**/**
+!dist/**
+!appsscript.json

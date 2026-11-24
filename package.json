@@ -1,0 +1,31 @@
+{
+  "name": "gas-modern-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:ui": "vite build",
+    "build:gas": "esbuild src/backend/main.ts --bundle --outfile=dist/Code.js --format=iife --target=es2020 --charset=utf8",
+    "copy:manifest": "node -e \"const fs = require('fs'); fs.mkdirSync('dist', { recursive: true }); fs.copyFileSync('appsscript.json', 'dist/appsscript.json');\"",
+    "build": "npm run build:ui && npm run build:gas && npm run copy:manifest",
+    "push": "npm run build && clasp push",
+    "deploy": "npm run build && clasp push && clasp deploy"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.5.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/google-apps-script": "^1.0.95",
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "esbuild": "^0.24.2",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-singlefile": "^2.2.0",
+    "vue-tsc": "^2.2.0"
+  }
+}
