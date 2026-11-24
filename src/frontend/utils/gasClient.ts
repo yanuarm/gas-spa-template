@@ -60,6 +60,13 @@ export function isGasEnvironment(): boolean {
   );
 }
 
+export function callGas<K extends keyof ServerFunctions>(
+  functionName: K,
+  ...args: Parameters<ServerFunctions[K]>
+): Promise<ReturnType<ServerFunctions[K]>> {
+  return runGas(functionName, ...args);
+}
+
 /**
  * Wrapper Promise untuk google.script.run dengan auto-fallback ke mock data saat npm run dev
  */
